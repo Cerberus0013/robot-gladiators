@@ -1,5 +1,11 @@
 // creates a function named "fight
 
+var randomNumber = function(min, max ) {
+    var value = Math.floor(Math.random () * (max - min + 1) + min);
+
+    return value;
+} 
+
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
@@ -7,7 +13,7 @@ var playerMoney = 10;
 
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40, 60)
 var enemyAttack = 12;
 
 
@@ -15,9 +21,6 @@ console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
 console.log(enemyNames[3]);
-// var fight= function() {
-//     window.alert ("Welcome to Robot Gladiators!")
-// };
 
 
 
@@ -31,12 +34,15 @@ var fight = function (enemyName){
             var confirmSkip = window.confirm("Are you sure you'd like to quit?")
             if (confirmSkip) {
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playermoney", playerMoney);
                 break
             }
         }
-            enemyHealth = enemyHealth - playerAttack;
+        //generate random attack damage    
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+           
+        enemyHealth = Math.max(0, enemyHealth - damage);
             
             console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has "+ enemyHealth + " health remaining. " );
             
@@ -53,7 +59,8 @@ var fight = function (enemyName){
                 }
                 
                 // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-                playerHealth = playerHealth - enemyAttack;
+            var damage = randomNumber(enemyAttack -3, enemyAttack);
+            playerHealth = Math.max(0, playerHealth - damage);
                 // Log a resulting message to the console so we know that it worked.
                 console.log(
                     `${enemyName} attacked ${playerName}. ${playerName} now has ${playerHealth} health remaining.`
