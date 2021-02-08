@@ -80,27 +80,32 @@ var fightOrSkip = function () {
 
 // fight function (now with parameter for enemy's object holding name, health, and attack values)
 var fight = function(enemy) {
-  while (playerInfo.health > 0 && enemy.health > 0) {
+    var isPlayerturn = true
+    if (Math.random() > 5){
+        isPlayerturn = false;
+    }
+  while (playerInfo.health > 0 && enemy.health > 0) 
+   if(isPlayerturn){
     // ask player if they'd like to fight or run
     if (fightOrSkip()){
         break;
     }
     // if player picks "skip" confirm and then stop the loo
-    // promptFight = promptFight.toLowerCase();
+    //  promptFight = promptFight.toLowerCase();
 
     // if (promptFight === 'skip' || promptFight === 'SKIP') {
-    //   // confirm player wants to skip
-    //   var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+    // // confirm player wants to skip
+    // var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
-    //   // if yes (true), leave fight
-    //   if (confirmSkip) {
-    //     window.alert(playerName + ' has decided to skip this fight. Goodbye!');
-    //     // subtract money from playerMoney for skipping
-    //     playerMoney = playerMoney - 10;
-    //     shop();
-    //     break;
-    //   }
-    };
+    // //   // if yes (true), leave fight
+    // if (confirmSkip) {
+    // window.alert(playerName + ' has decided to skip this fight. Goodbye!');
+    // //     // subtract money from playerMoney for skipping
+    // playerMoney = playerMoney - 10;
+    //   shop();
+    //  break;
+    //    }
+    // };
 
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
@@ -159,7 +164,9 @@ var fight = function(enemy) {
     } else {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
-  };
+}
+isPlayerturn = !isPlayerturn;
+};
 
 // go to shop between battles function
 var shop = function() {
